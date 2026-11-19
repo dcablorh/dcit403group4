@@ -1,0 +1,64 @@
+Parser tests: manual regex vs the tolerant parser
+============================================================
+[PASS] exact format from the prompt
+        input        : 'Thought: compute the total.\nAction: calculator\nAction Input: 4*185 + 3*95'
+        manual regex : ('calculator', '4*185 + 3*95')
+        expected     : ('calculator', '4*185 + 3*95')
+        got          : ('calculator', '4*185 + 3*95')
+[PASS] Windows line endings and extra spaces
+        input        : 'Thought: compute.\r\nAction:  calculator \r\n  Action Input:   1200 - 1025  '
+        manual regex : ('calculator', '1200 - 1025')
+        expected     : ('calculator', '1200 - 1025')
+        got          : ('calculator', '1200 - 1025')
+[PASS] both fields on one line (manual regex fails)
+        input        : 'Thought: compute.\nAction: calculator Action Input: 1200 - 1025'
+        manual regex : (None, None)
+        expected     : ('calculator', '1200 - 1025')
+        got          : ('calculator', '1200 - 1025')
+[PASS] model leaks its own Observation (stop= did not hold)
+        input        : 'Thought: compute.\nAction: calculator\nAction Input: 4*185\nObservation: 740'
+        manual regex : ('calculator', '4*185\nObservation: 740')
+        expected     : ('calculator', '4*185')
+        got          : ('calculator', '4*185')
+[PASS] tool name capitalised by the model
+        input        : 'Thought: look it up.\nAction: Wiki_Lookup\nAction Input: Makola Market'
+        manual regex : ('Wiki_Lookup', 'Makola Market')
+        expected     : ('wiki_lookup', 'Makola Market')
+        got          : ('wiki_lookup', 'Makola Market')
+[PASS] answer wrapped in backticks
+        input        : 'Thought: look it up.\nAction: wiki_lookup\nAction Input: `Makola Market`'
+        manual regex : ('wiki_lookup', '`Makola Market`')
+        expected     : ('wiki_lookup', 'Makola Market')
+        got          : ('wiki_lookup', 'Makola Market')
+[PASS] final answer label instead of finish
+        input        : 'Thought: done.\nFinal Answer: You will have GHS 175 left.'
+        manual regex : (None, None)
+        expected     : ('finish', 'You will have GHS 175 left.')
+        got          : ('finish', 'You will have GHS 175 left.')
+[PASS] finish with a newline before the answer
+        input        : 'Thought: done.\nAction: finish\nYou will have GHS 175 left.'
+        manual regex : (None, None)
+        expected     : ('finish', 'You will have GHS 175 left.')
+        got          : ('finish', 'You will have GHS 175 left.')
+[PASS] whole ReAct transcript in one reply (gpt-oss-20b does this)
+        input        : 'Thought: Compute the total.\nAction: calculator\nAction Input: 4*185 + 3*95\n\nThought: Subtract from the budget.\nAction: calculator\nAction Input: 1200 - 1025\n\nThought: Answer.\nAction: finish\nAction Input: GHS 175'
+        manual regex : ('calculator', '4*185 + 3*95\n\nThought: Subtract from the budget.\nAction: calculator\nAction Input: 1200 - 1025\n\nThought: Answer.\nAction: finish\nAction Input: GHS 175')
+        expected     : ('calculator', '4*185 + 3*95')
+        got          : ('calculator', '4*185 + 3*95')
+[PASS] future steps leaked, tool input is text not a number
+        input        : 'Thought: Look it up.\nAction: wiki_lookup\nAction Input: Makola Market  \n\nThought: Then cost it.\nAction: calculator\nAction Input: 7*140'
+        manual regex : ('wiki_lookup', 'Makola Market  \n\nThought: Then cost it.\nAction: calculator\nAction Input: 7*140')
+        expected     : ('wiki_lookup', 'Makola Market')
+        got          : ('wiki_lookup', 'Makola Market')
+[PASS] prose, no Action line at all (must return None)
+        input        : 'I think the answer is 175 but I am not certain.'
+        manual regex : (None, None)
+        expected     : (None, None)
+        got          : (None, None)
+[PASS] empty reply (must return None)
+        input        : ''
+        manual regex : (None, None)
+        expected     : (None, None)
+        got          : (None, None)
+============================================================
+12/12 passed

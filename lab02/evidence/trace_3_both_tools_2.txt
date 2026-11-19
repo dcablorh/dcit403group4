@@ -1,0 +1,31 @@
+QUESTION: Summarise the Ghana cedi from Wikipedia in one sentence, and work out 2500 - 3*450.
+MODEL: groq/qwen/qwen3.8-27b
+MODE: live
+MAX_STEPS: 6   TEMPERATURE: 0
+----------------------------------------------------------------------
+SYSTEM PROMPT (abridged): ReAct format, tools = calculator | wiki_lookup | finish
+----------------------------------------------------------------------
+
+STEP 1  (0.47s)
+Thought: I need to look up the Ghana cedi on Wikipedia and also calculate 2500 - 3*450. Let me start with the wiki lookup.
+Action: wiki_lookup
+Action Input: Ghana cedi
+  [tool] wiki_lookup('Ghana cedi') -> The cedi is the unit of currency of Ghana. It is the fourth historical and only current legal tender in the Republic of Ghana. One Cedi is divided into one hundred Pesewas (Gp).
+Observation: The cedi is the unit of currency of Ghana. It is the fourth historical and only current legal tender in the Republic of Ghana. One Cedi is divided into one hundred Pesewas (Gp).
+
+STEP 2  (0.36s)
+Thought: I have the Wikipedia summary for the Ghana cedi. Now I need to calculate 2500 - 3*450 using the calculator.
+Action: calculator
+Action Input: 2500 - 3*450
+  [tool] calculator('2500 - 3*450') -> 1150
+Observation: 1150
+
+STEP 3  (1.48s)
+Thought: I have both pieces of information: the Wikipedia summary of the Ghana cedi and the calculator result of 1150. I can now provide the final answer.
+Action: finish
+Action Input: The cedi is the unit of currency of Ghana, the fourth historical and only current legal tender in the Republic of Ghana, with one cedi divided into one hundred pesewas. The result of 2500 - 3*450 is 1150.
+  [finish] The cedi is the unit of currency of Ghana, the fourth historical and only current legal tender in the Republic of Ghana, with one cedi divided into one hundred pesewas. The result of 2500 - 3*450 is 1150.
+
+======================================================================
+OUTCOME: finish   STEPS: 3   TOKENS: 1581 (prompt 1372, completion 209)
+ANSWER: The cedi is the unit of currency of Ghana, the fourth historical and only current legal tender in the Republic of Ghana, with one cedi divided into one hundred pesewas. The result of 2500 - 3*450 is 1150.

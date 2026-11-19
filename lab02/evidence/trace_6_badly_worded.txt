@@ -1,0 +1,24 @@
+QUESTION: bag rice 185 4x plus oil 95 3x minus 1200?? leftover
+MODEL: groq/qwen/qwen3.8-27b
+MODE: live
+MAX_STEPS: 6   TEMPERATURE: 0
+----------------------------------------------------------------------
+SYSTEM PROMPT (abridged): ReAct format, tools = calculator | wiki_lookup | finish
+----------------------------------------------------------------------
+
+STEP 1  (1.01s)
+Thought: The user wants to calculate the leftover money after buying 4 bags of rice at 185 each and 3 bottles of oil at 95 each, starting with 1200. I need to compute 1200 - (4*185 + 3*95).
+Action: calculator
+Action Input: 1200 - (4*185 + 3*95)
+  [tool] calculator('1200 - (4*185 + 3*95)') -> 175
+Observation: 175
+
+STEP 2  (2.56s)
+Thought: The calculator shows the leftover is 175. I can now finish.
+Action: finish
+Action Input: You have 175 cedis left.
+  [finish] You have 175 cedis left.
+
+======================================================================
+OUTCOME: finish   STEPS: 2   TOKENS: 957 (prompt 826, completion 131)
+ANSWER: You have 175 cedis left.
