@@ -1,0 +1,135 @@
+# MCP Inspector CLI output (npx @modelcontextprotocol/inspector --cli "python server.py")
+# The required UI screenshot is evidence/mcp_inspector_screenshot.png - take it with:
+#   npx @modelcontextprotocol/inspector python server.py    then open the printed URL
+
+=== tools/list ===
+{"error":{"code":"unreachable","message":"Connection timed out after 15000 ms. To accommodate a slower server, pass a larger --connect-timeout <ms>, or set connectionTimeout on the server's catalog or config entry."}}
+
+=== tools/call check_stock item=amoxicillin strength=500mg ===
+                             ListToolsRequest                                  
+                             CallToolRequest                                   
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Amoxicillin\",\n  \"strength\": \"500mg\",\n  \"form\": \"capsules (pack of 21)\",\n  \"quantity\": \"37\",\n  \"unit_price_ghs\": \"35.00\",\n  \"expiry_date\": \"2027-12-17\"\n}"
+    }
+  ],
+  "structuredContent": {
+    "result": [
+      {
+        "item": "Amoxicillin",
+        "strength": "500mg",
+        "form": "capsules (pack of 21)",
+        "quantity": "37",
+        "unit_price_ghs": "35.00",
+        "expiry_date": "2027-12-17"
+      }
+    ]
+  },
+  "isError": false
+}
+
+=== tools/call list_expiring days=60 ===
+                             ListToolsRequest                                  
+                             CallToolRequest                                   
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Hydrocortisone\",\n  \"strength\": \"1%\",\n  \"form\": \"cream (15g)\",\n  \"quantity\": \"22\",\n  \"unit_price_ghs\": \"14.00\",\n  \"expiry_date\": \"2026-11-17\",\n  \"days_left\": -8\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Ciprofloxacin\",\n  \"strength\": \"500mg\",\n  \"form\": \"tablets (pack of 10)\",\n  \"quantity\": \"25\",\n  \"unit_price_ghs\": \"24.00\",\n  \"expiry_date\": \"2026-11-27\",\n  \"days_left\": 2\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Paracetamol\",\n  \"strength\": \"120mg/5ml\",\n  \"form\": \"syrup (100ml)\",\n  \"quantity\": \"30\",\n  \"unit_price_ghs\": \"15.00\",\n  \"expiry_date\": \"2026-12-07\",\n  \"days_left\": 12\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Oral Rehydration Salts\",\n  \"strength\": \"20.5g\",\n  \"form\": \"sachet\",\n  \"quantity\": \"200\",\n  \"unit_price_ghs\": \"2.50\",\n  \"expiry_date\": \"2026-12-12\",\n  \"days_left\": 17\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Amoxicillin\",\n  \"strength\": \"250mg\",\n  \"form\": \"capsules (pack of 21)\",\n  \"quantity\": \"12\",\n  \"unit_price_ghs\": \"22.50\",\n  \"expiry_date\": \"2026-12-27\",\n  \"days_left\": 32\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Artemether-Lumefantrine\",\n  \"strength\": \"80/480mg\",\n  \"form\": \"tablets (pack of 6)\",\n  \"quantity\": \"8\",\n  \"unit_price_ghs\": \"32.00\",\n  \"expiry_date\": \"2027-01-06\",\n  \"days_left\": 42\n}"
+    },
+    {
+      "type": "text",
+      "text": "{\n  \"item\": \"Cetirizine\",\n  \"strength\": \"10mg\",\n  \"form\": \"tablets (pack of 10)\",\n  \"quantity\": \"80\",\n  \"unit_price_ghs\": \"7.50\",\n  \"expiry_date\": \"2027-01-10\",\n  \"days_left\": 46\n}"
+    }
+  ],
+  "structuredContent": {
+    "result": [
+      {
+        "item": "Hydrocortisone",
+        "strength": "1%",
+        "form": "cream (15g)",
+        "quantity": "22",
+        "unit_price_ghs": "14.00",
+        "expiry_date": "2026-11-17",
+        "days_left": -8
+      },
+      {
+        "item": "Ciprofloxacin",
+        "strength": "500mg",
+        "form": "tablets (pack of 10)",
+        "quantity": "25",
+        "unit_price_ghs": "24.00",
+        "expiry_date": "2026-11-27",
+        "days_left": 2
+      },
+      {
+        "item": "Paracetamol",
+        "strength": "120mg/5ml",
+        "form": "syrup (100ml)",
+        "quantity": "30",
+        "unit_price_ghs": "15.00",
+        "expiry_date": "2026-12-07",
+        "days_left": 12
+      },
+      {
+        "item": "Oral Rehydration Salts",
+        "strength": "20.5g",
+        "form": "sachet",
+        "quantity": "200",
+        "unit_price_ghs": "2.50",
+        "expiry_date": "2026-12-12",
+        "days_left": 17
+      },
+      {
+        "item": "Amoxicillin",
+        "strength": "250mg",
+        "form": "capsules (pack of 21)",
+        "quantity": "12",
+        "unit_price_ghs": "22.50",
+        "expiry_date": "2026-12-27",
+        "days_left": 32
+      },
+      {
+        "item": "Artemether-Lumefantrine",
+        "strength": "80/480mg",
+        "form": "tablets (pack of 6)",
+        "quantity": "8",
+        "unit_price_ghs": "32.00",
+        "expiry_date": "2027-01-06",
+        "days_left": 42
+      },
+      {
+        "item": "Cetirizine",
+        "strength": "10mg",
+        "form": "tablets (pack of 10)",
+        "quantity": "80",
+        "unit_price_ghs": "7.50",
+        "expiry_date": "2027-01-10",
+        "days_left": 46
+      }
+    ]
+  },
+  "isError": false
+}

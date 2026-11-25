@@ -1,0 +1,70 @@
+# Lab 2 ReAct agent, tools discovered from the MCP server
+# model: groq/qwen/qwen3.8-27b
+# run: 2026-11-25T13:45:51
+# question: Do we have amoxicillin 500mg?
+
+DISCOVERED TOOLS (from the server, not imported):
+  check_stock
+    Return stock rows for one medicine whose name contains `item` and whose
+strength contains `strength` when it is given.
+
+`item` must be the medicine name only (e.g. 'paracetamol', 'amoxicillin'),
+not the form. Use search_items for form words such as 'syrup', 'cream' or
+'inhaler' and for partial names. An empty list means we do not stock it.
+
+    arguments:
+      - item: string
+      - strength: string, default '' (optional)
+
+  search_items
+    Free-text search across medicine name, strength and form. The words in
+`query` may be split across those fields, so 'paracetamol syrup' and
+'amoxicillin 500mg capsules' both work. Use it for form words ('syrup',
+'cream', 'inhaler'), a partial name, or when you are not sure of the exact
+medicine. Do not use it for availability questions about a known medicine;
+check_stock is exact.
+    arguments:
+      - query: string
+
+  list_expiring
+    Return stock rows that expire within `days` days from today, soonest
+first, with a `days_left` field. Rows already out of date have a negative
+`days_left`. Use for 'which items expire soon?' questions.
+    arguments:
+      - days: integer, default 60 (optional)
+
+  record_sale
+    Record that `qty` packs of `item` at `strength` were sold and reduce the
+quantity in stock. Refuses a non-positive quantity, an unknown or ambiguous
+item, an expired batch and any oversale. Give the strength whenever more
+than one strength of the medicine is stocked. Returns a message to relay.
+    arguments:
+      - item: string
+      - strength: string
+      - qty: integer
+
+QUESTION: Do we have amoxicillin 500mg?
+----------------------------------------------------------------------
+
+STEP 1  (6.97s)
+Thought: I need to check the stock for amoxicillin 500mg.
+Action: check_stock
+Action Input: {"item": "amoxicillin", "strength": "500mg"}
+  [mcp] check_stock({'item': 'amoxicillin', 'strength': '500mg'}) -> { "item": "Amoxicillin", "strength": "500mg", "form": "capsules (pack of 21)", "quantity": "37", "unit_price_ghs": "35.00", "expiry_date": "2027-12-17" }
+Observation: {
+  "item": "Amoxicillin",
+  "strength": "500mg",
+  "form": "capsules (pack of 21)",
+  "quantity": "37",
+  "unit_price_ghs": "35.00",
+  "expiry_date": "2027-12-17"
+}
+
+STEP 2  (0.87s)
+Thought: The tool returned stock information for amoxicillin 500mg. I can now provide the answer to the user.
+Action: finish
+Action Input: Yes, we have amoxicillin 500mg capsules (pack of 21) in stock. There are 37 packs available at GH₵35.00 each, with an expiry date of 17 December 2027.
+
+======================================================================
+OUTCOME: finish
+FINAL ANSWER: Yes, we have amoxicillin 500mg capsules (pack of 21) in stock. There are 37 packs available at GH₵35.00 each, with an expiry date of 17 December 2027.
