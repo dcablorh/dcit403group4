@@ -1,0 +1,12 @@
+# model: groq/qwen/qwen3.8-27b
+# GROQ_API_KEY: set (56 chars, value never written to disk)
+# python: 3.13.3
+# facts version: 2026-11-25 (current)
+
+QUESTION 1: Where do I collect my official transcript?
+ANSWER   1: You can collect your official transcript at the Transcripts and Certificates office in Block A, Room A12. Bring your application form, student ID, and GHS 100.00, as it is ready in five working days.
+
+QUESTION 2: How much does a regular Ghanaian undergraduate pay per semester?
+ANSWER   2: A regular Ghanaian undergraduate pays GHS 2,450.00 per semester.
+
+# turns: 2   total tokens: 3154

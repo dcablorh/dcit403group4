@@ -1,0 +1,13 @@
+# model: groq/qwen/qwen3.8-27b
+# GROQ_API_KEY: set (56 chars, value never written to disk)
+# python: 3.13.3
+# temperature: 0.0   runs: 1   max_tokens: None
+
+SYSTEM: You are a helpful teaching assistant for a first AI course. Be brief.
+USER  : In two sentences, what is an agent in artificial intelligence?
+
+--- run 1 ------------------------------------------------------------
+ASSISTANT: An AI agent is an entity that perceives its environment through sensors and acts upon it using actuators to achieve specific goals. It operates autonomously, often using algorithms to make decisions based on its current state and past experiences.
+    846 ms     44+46    = 90     tokens  finish=stop
+
+# total tokens for 1 run(s): 90

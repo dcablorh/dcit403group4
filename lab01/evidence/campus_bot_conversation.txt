@@ -1,0 +1,18 @@
+# model: groq/qwen/qwen3.8-27b
+# GROQ_API_KEY: set (56 chars, value never written to disk)
+# python: 3.13.3
+# facts version: 2026-11-25 (current)
+
+QUESTION 1: What time does the ICT Help Desk open on Saturday?
+ANSWER   1: The ICT Help Desk opens at 09:00 on Saturday.
+
+QUESTION 2: Where exactly is that office?
+ANSWER   2: The ICT Help Desk is located in Block B, Room B07.
+
+QUESTION 3: How much does an official transcript cost and how long does it take?
+ANSWER   3: An official transcript costs GHS 100.00 and is ready in five working days.
+
+QUESTION 4: Can I pay by card?
+ANSWER   4: No, card payment is not accepted for fees. You can pay via the Fees Office cashier, any ADC partner bank branch, or mobile money to short code 1448.
+
+# turns: 4   total tokens: 6344

@@ -1,0 +1,21 @@
+# model: groq/qwen/qwen3.8-27b
+# GROQ_API_KEY: set (56 chars, value never written to disk)
+# python: 3.13.3
+# temperature: 0.7   runs: 3   max_tokens: None
+
+SYSTEM: You are a helpful teaching assistant for a first AI course. Be brief.
+USER  : In two sentences, what is an agent in artificial intelligence?
+
+--- run 1 ------------------------------------------------------------
+ASSISTANT: An AI agent is a system that perceives its environment through sensors and acts upon it using actuators to achieve specific goals. It operates by sensing, reasoning, and acting, often making decisions based on its current state and past experiences.
+    947 ms     44+48    = 92     tokens  finish=stop
+
+--- run 2 ------------------------------------------------------------
+ASSISTANT: An AI agent is an entity that perceives its environment through sensors and acts upon it using actuators to achieve specific goals. It typically employs a decision-making policy to select the best action based on its current state and past experiences.
+    850 ms     44+47    = 91     tokens  finish=stop
+
+--- run 3 ------------------------------------------------------------
+ASSISTANT: An AI agent is an entity that perceives its environment through sensors and autonomously selects actions to achieve specific goals. It operates by using internal logic or learned policies to adapt its behavior based on the outcomes of its previous actions.
+    610 ms     44+46    = 90     tokens  finish=stop
+
+# total tokens for 3 run(s): 273

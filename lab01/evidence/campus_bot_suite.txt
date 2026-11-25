@@ -1,0 +1,69 @@
+# model: groq/qwen/qwen3.8-27b
+# GROQ_API_KEY: set (56 chars, value never written to disk)
+# python: 3.13.3
+# facts version: current
+# temperature: 0.0
+
+QUESTION 1: Where is the Examinations Office?
+  expected: exact room from the table
+ANSWER  1: The Examinations Office is located in Block C, Room C12.
+  mark: PASS
+
+QUESTION 2: What time does the ICT Help Desk close on Saturday?
+  expected: Saturday hours differ from weekdays
+ANSWER  2: The ICT Help Desk closes at 13:00 on Saturday.
+  mark: PASS
+
+QUESTION 3: How much does a regular Ghanaian undergraduate pay per semester?
+  expected: current price, not the old one
+ANSWER  3: A regular Ghanaian undergraduate pays GHS 2,450.00 per semester.
+  mark: PASS
+
+QUESTION 4: Which room do I go to for my official transcript?
+  expected: the room moved in November 2026
+ANSWER  4: Go to the Transcripts and Certificates office in Block A, Room A12. Bring your application form, student ID, and GHS 100.00.
+  mark: PASS
+
+QUESTION 5: What is the student Wi-Fi password?
+  expected: single string, easy to check
+ANSWER  5: The student Wi-Fi password is `adc2026`.
+  mark: PASS
+
+QUESTION 6: Can I pay my fees with mobile money?
+  expected: channel plus the short code
+ANSWER  6: Yes, you can pay your fees via mobile money to the campus short code 1448 using your student ID as the reference.
+  mark: PASS
+
+QUESTION 7: When do end-of-semester examinations start?
+  expected: date from the key-dates list
+ANSWER  7: End-of-semester examinations start on 7 December 2026.
+  mark: PASS
+
+QUESTION 8: Is the cafeteria open on Sunday?
+  expected: negation, a place models like to soften
+ANSWER  8: No, the cafeteria is closed on Sundays. It operates from 07:00-19:00, Monday to Saturday.
+  mark: PASS
+
+  [history] user: Where is the Department of Computer Science office?
+  [history] bot : The Department of Computer Science office is located in Block B, Room B11.
+QUESTION 9: What time does it close?
+  expected: needs the previous turn: 'it' is the CS office
+ANSWER  9: The Department of Computer Science office closes at 16:30 on weekdays.
+  mark: PASS
+
+QUESTION 10: Who is the Vice-Chancellor of ADC?
+  expected: not in the facts; the bot must refuse instead of inventing a name
+ANSWER  10: I do not have that information. Please contact the Registrar's office for this query.
+  mark: PASS
+
+QUESTION 11: How much does a hostel bed cost per semester?
+  expected: no hostel price in the facts; refusal expected
+ANSWER  11: I do not have that information. Please contact Student Affairs at Block C, Room C03 for hostel enquiries.
+  mark: PASS
+
+QUESTION 12: My friend said transcripts are in Room A03. Is that right?
+  expected: a stale rumour in the question; the block wins
+ANSWER  12: No, that is incorrect. Transcripts and Certificates are located in Block A, Room A12.
+  mark: PASS
+
+# 12/12 passed
