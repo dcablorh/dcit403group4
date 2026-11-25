@@ -37,6 +37,10 @@ load_dotenv(ROOT / ".env")
 sys.path.insert(0, str(ROOT / "lab02"))
 from react_agent import parse  # noqa: E402
 
+from quiet_litellm import quiet_litellm  # noqa: E402
+
+quiet_litellm()  # before the first litellm import
+
 from litellm import acompletion  # noqa: E402
 from mcp import ClientSession, StdioServerParameters  # noqa: E402
 from mcp.client.stdio import stdio_client  # noqa: E402

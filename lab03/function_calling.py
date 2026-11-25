@@ -20,6 +20,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from quiet_litellm import quiet_litellm  # must run before the first litellm import
+
+quiet_litellm()
+
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 

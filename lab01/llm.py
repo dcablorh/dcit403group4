@@ -26,6 +26,22 @@ DEFAULT_MODEL = "groq/openai/gpt-oss-20b"
 # the provider needed a second attempt instead of hiding it.
 RETRIES = 0
 
+
+def quiet_litellm() -> None:
+    """Drop LiteLLM's warnings about providers we do not use.
+
+    At import LiteLLM pre-loads the response shape for every provider it
+    supports and logs a WARNING for each one it cannot load; without `botocore`
+    that is two lines about Bedrock and SageMaker on every run, in every
+    transcript kept as evidence. Real errors still show.
+    """
+    import logging
+
+    logging.getLogger("LiteLLM").setLevel(logging.ERROR)
+    for name, logger in list(logging.root.manager.loggerDict.items()):
+        if name.startswith("LiteLLM") and isinstance(logger, logging.Logger):
+            logger.setLevel(logging.ERROR)
+
 # Suffixes LiteLLM adds per provider, so the price table is easy to fill in.
 _CLEAN = {
     "\u202f": " ", "\u00a0": " ", "\u2009": " ", "\u2007": " ",
@@ -91,6 +107,7 @@ def chat(messages, temperature: float = 0.0, max_tokens: int | None = None,
     """Call the model once, retrying rate limits with the given backoff."""
     global RETRIES
     model = model or load_env()
+    quiet_litellm()
     from litellm import completion  # imported here so `--help` works without it
 
     last = None

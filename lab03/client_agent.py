@@ -29,6 +29,10 @@ if hasattr(sys.stdout, "reconfigure"):
 HERE = Path(__file__).resolve().parent
 load_dotenv(HERE.parent / ".env")
 
+from quiet_litellm import quiet_litellm  # noqa: E402
+
+quiet_litellm()  # before the first litellm import
+
 from litellm import acompletion  # noqa: E402
 from mcp import ClientSession, StdioServerParameters  # noqa: E402
 from mcp.client.stdio import stdio_client  # noqa: E402
