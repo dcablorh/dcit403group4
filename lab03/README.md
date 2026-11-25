@@ -68,6 +68,7 @@ questions and retry a 429 (5, 10, 20, 30 s) instead of losing the run.
 | `evidence/function_calling.txt` | step 1, three questions, `tool_calls` printed |
 | `evidence/client_agent_suite.txt` | step 5, the six questions end to end |
 | `evidence/tool_calls.jsonl` | one JSON line per tool call: timestamp (UTC), question id, tool, arguments, result summary, duration in ms, ok |
+| `evidence/client_agent_run.txt` | a single-question run of `client_agent.py`, kept because it shows the full step-1 → step-2 transcript and the final answer |
 | `evidence/inspector_tools_list.txt` | MCP Inspector in CLI mode: `tools/list`, `tools/call check_stock`, `tools/call list_expiring` |
 | `evidence/tool_call_wrong_args_before_fix.txt` | the earlier run that made the wrong call described below |
 | `evidence/react_via_mcp.txt` | Wednesday: Lab 2's agent with MCP-discovered tools |
@@ -75,13 +76,18 @@ questions and retry a 429 (5, 10, 20, 30 s) instead of losing the run.
 
 ### Six-question run (step 5)
 
-The log has six entries, one question each. All four tools were exercised:
-`check_stock` (q1, q4), `list_expiring` (q2), `search_items` (q3),
-`record_sale` (q5 sale, q6 oversale).
+The first six lines of the log are the suite, one question each. All four tools
+were exercised: `check_stock` (q1, q4), `list_expiring` (q2), `search_items`
+(q3), `record_sale` (q5 sale, q6 oversale).
 
 - q5: 3 packs of amoxicillin 500mg sold → 40 → **37** in the CSV, GHS 105.00.
 - q6: 500 packs of paracetamol 500mg refused: *"Only 150 packs ... are in stock,
   not 500"*; the CSV was not touched.
+
+The **seventh** line is a later single-question run
+(`evidence/client_agent_run.txt`, question id 1 again) made to check the
+`check_stock` answer after the fixes. It is appended to the same file because the
+logger always appends; the suite itself is the first six lines.
 
 ### One wrong tool call, and the fix
 
